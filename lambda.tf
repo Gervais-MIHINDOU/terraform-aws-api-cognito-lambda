@@ -10,17 +10,16 @@ resource "aws_lambda_function" "lambda" {
   runtime = "python3.9"
 
   environment {
-    variables = {
-      foo = "bar"
-    }
+    variables = var.environments
   }
 }
 
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_file = "../backend_user/${var.function_name}/${var.function_name}.py"
-  output_path = "${var.function_name}.zip"
+  source_dir = "../backend_user/${var.function_name}"
+  output_path = "tmpM/${var.function_name}.zip"
 }
+
 data "aws_iam_role" "iam_lambda" {
   name = "moneyshome_lambda_role"
 }
