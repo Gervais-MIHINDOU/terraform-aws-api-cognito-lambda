@@ -20,7 +20,7 @@ variable "is_api" {
   default = true
 }
 
-variable "environments" {
+variable "variables_environement" {
   type = any
   description = "La liste des variables d environment de la lambda"
 }
