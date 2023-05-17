@@ -21,7 +21,7 @@ resource "aws_api_gateway_integration" "integration_request" {
   resource_id             = aws_api_gateway_resource.path_resource.id
   http_method             = aws_api_gateway_method.method_http.http_method
   integration_http_method = "POST"
-  uri                     =  module.lambda.aws_lambda_function.lambda.invoke_arn
+  uri                     =  module.lambda.lambda_invoke_arn
   type                    = "AWS"
   
 }
