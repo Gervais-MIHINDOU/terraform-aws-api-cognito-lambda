@@ -14,4 +14,3 @@ variable "function_name" {
   type = string
   description = "nom de la fonction"
 }
-v
