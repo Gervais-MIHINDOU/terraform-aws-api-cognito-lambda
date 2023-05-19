@@ -15,6 +15,7 @@ variable "function_name" {
   description = "nom de la fonction"
 }
 variable "variables_environement" {
-  type = any
+  type = map(string)
   description = "La liste des variables d environment de la lambda"
+  default = {}
 }
