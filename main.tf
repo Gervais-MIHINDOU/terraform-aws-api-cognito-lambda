@@ -54,14 +54,6 @@ resource "aws_lambda_permission" "permition_api" {
 }
 
 
-resource "aws_api_gateway_deployment" "stage" {
-  depends_on = [
-    aws_api_gateway_integration.integration_request
-  ]
-  rest_api_id = "${data.aws_api_gateway_rest_api.moneyshome.id}"
-  stage_name  = var.stage_name
-}
-
 module "lambda" {
   source = "git::https://gitlab.com/moneys-home/infra-lambda-module.git?ref=main"
   function_name = "accessToken"
