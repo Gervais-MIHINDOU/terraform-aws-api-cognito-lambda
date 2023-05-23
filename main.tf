@@ -51,6 +51,10 @@ resource "aws_lambda_permission" "permition_api" {
   function_name =  var.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${data.aws_api_gateway_rest_api.moneyshome.execution_arn}/*/${aws_api_gateway_method.method_http.http_method}${aws_api_gateway_resource.path_resource.path}"
+
+  depends_on = [
+    module.lambda
+  ]
 }
 
 
