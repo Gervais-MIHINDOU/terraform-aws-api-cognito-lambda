@@ -56,6 +56,6 @@ resource "aws_lambda_permission" "permition_api" {
 
 module "lambda" {
   source = "git::https://gitlab.com/moneys-home/infra-lambda-module.git?ref=main"
-  function_name = "accessToken"
+  function_name = var.function_name
   variables_environement = var.variables_environement
 }
