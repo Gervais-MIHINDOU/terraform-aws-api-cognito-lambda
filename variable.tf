@@ -19,3 +19,7 @@ variable "variables_environement" {
   description = "La liste des variables d environment de la lambda"
   default = {}
 }
+variable "runtime" {
+  type = string
+  description = "language utiliser"
+}
