@@ -62,5 +62,5 @@ module "lambda" {
   source = "git::https://gitlab.com/moneys-home/infra-lambda-module.git?ref=main"
   function_name = var.function_name
   variables_environement = var.variables_environement
-  runtime = "python 3.9"
+  runtime = "python3.9"
 }
