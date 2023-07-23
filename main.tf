@@ -24,11 +24,13 @@ resource "aws_api_gateway_integration" "integration_request" {
   uri                     = module.lambda.lambda_invoke_arn
   type                    = "AWS"
   request_templates = {
-    "application/json" = tostring({
+    "application/json" = <<EOF
+    {
       "headers" : {
         "$param" : "$util.escapeJavaScript($input.params().header.get($param))"
       }
-    })
+    }
+EOF
   }
 }
 
