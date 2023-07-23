@@ -21,9 +21,17 @@ resource "aws_api_gateway_integration" "integration_request" {
   resource_id             = aws_api_gateway_resource.path_resource.id
   http_method             = aws_api_gateway_method.method_http.http_method
   integration_http_method = "POST"
-  uri                     =  module.lambda.lambda_invoke_arn
+  uri                     = module.lambda.lambda_invoke_arn
   type                    = "AWS"
-  
+  request_templates = {
+    "application/json" = jsondecode({
+      "headers" : {
+        #foreach($param in $input.params().header.keySet())
+        "$param" : "$util.escapeJavaScript($input.params().header.get($param))" #if($foreach.hasNext),#end
+        #end
+      }
+    })
+  }
 }
 
 resource "aws_api_gateway_method_response" "response_200" {
