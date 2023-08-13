@@ -25,7 +25,7 @@ resource "aws_api_gateway_integration" "integration_request" {
   type                    = "AWS"
   request_templates = {
     "application/json" = <<EOF
-    {
+    { "body" : $input.json('$'),
       "headers" : {
         "$param" : "$util.escapeJavaScript($input.params().header.get($param))"
       }
