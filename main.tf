@@ -25,11 +25,14 @@ resource "aws_api_gateway_integration" "integration_request" {
   type                    = "AWS"
   request_templates = {
     "application/json" = <<EOF
-    { "body" : $input.json('$'),
-      "headers" : {
-        "$param" : "$util.escapeJavaScript($input.params().header.get($param))"
-      }
-    }
+  {"body" : $input.json('$'),
+"headers": {
+    #foreach($param in $input.params().header.keySet())
+    "$param": "$util.escapeJavaScript($input.params().header.get($param))" #if($foreach.hasNext),#end
+
+    #end
+  }
+}
 EOF
   }
 }
